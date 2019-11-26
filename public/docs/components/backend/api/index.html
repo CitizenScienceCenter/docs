@@ -1,0 +1,7144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>C3S API - Citizen Science Center Zurich</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://docs.citizenscience.ch/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.3fa7d1129d6a35378e8b2a066888d5f1c50ce77ee0a064e8851fb064235fd540.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="https://docs.citizenscience.ch/"><img alt="Logo" src="/" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="https://docs.citizenscience.ch/"><img alt="Logo" src="/" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="active ">
+      <a href="https://docs.citizenscience.ch/docs/components/backend/api/">C3S API</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">C3S API</h1>
+<div class="content ">
+  
+
+<h1 id="c3s-api">C3S API v3.1.0</h1>
+
+<blockquote>
+<p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
+</blockquote>
+
+<p>An API for creating, running and analysing citizen science projects</p>
+
+<p>Base URLs:</p>
+
+<ul>
+<li><p><a href="https://staging.citizenscience.ch/v3">https://staging.citizenscience.ch/v3</a></p></li>
+
+<li><p><a href="https://api.citizenscience.ch/v3">https://api.citizenscience.ch/v3</a></p></li>
+</ul>
+
+<h1 id="authentication">Authentication</h1>
+
+<ul>
+<li><p>API Key (anonUser)</p>
+
+<ul>
+<li>Parameter Name: <strong>X-ANON</strong>, in: header.</li>
+</ul></li>
+
+<li><p>API Key (apiKeyHeader)</p>
+
+<ul>
+<li>Parameter Name: <strong>X-API-KEY</strong>, in: header.</li>
+</ul></li>
+
+<li><p>oAuth2 authentication.</p>
+
+<ul>
+<li>Flow: implicit</li>
+<li>Authorization URL = <a href="http://localhost:8081/oauth/authorize">http://localhost:8081/oauth/authorize</a></li>
+</ul></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Scope Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>apiKey</td>
+<td>Unique identifier of the user accessing the service.</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="c3s-api-comments">Comments</h1>
+
+<h2 id="get-a-single-comment">Get a single comment</h2>
+
+<p><a id="opIdget_comment"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/comments/{cid}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/comments/{cid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /comments/{cid}</code></p>
+
+<h3 id="get-a-single-comment-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>cid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;parent&quot;: &quot;string&quot;,
+  &quot;source_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="get-a-single-comment-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return comment</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Comment does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-a-single-comment-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» parent</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The task or project (or anything with an ID) it is related to</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader, anonUser
+</aside>
+
+<h2 id="post-a-comment">Post a comment</h2>
+
+<p><a id="opIdcreate_comment"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/comments',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/comments', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /comments</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;parent&quot;: &quot;string&quot;,
+  &quot;source_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="post-a-comment-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1comments/post/requestbody">#/paths/~1comments/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» parent</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>The task or project (or anything with an ID) it is related to</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;parent&quot;: &quot;string&quot;,
+  &quot;source_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="post-a-comment-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Comment created</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>409</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">Conflict</a></td>
+<td>Comment already exists</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="post-a-comment-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>201</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» parent</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The task or project (or anything with an ID) it is related to</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader, anonUser
+</aside>
+
+<h2 id="remove-a-comment">Remove a Comment</h2>
+
+<p><a id="opIddelete_comment"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/comments/{cid}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.delete('https://staging.citizenscience.ch/v3/comments/{cid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>DELETE /comments/{cid}</code></p>
+
+<h3 id="remove-a-comment-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>cid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="remove-a-comment-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>204</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
+<td>Comment was deleted</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Comment does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="modify-create-a-comment">Modify/Create a Comment</h2>
+
+<p><a id="opIdupdate_comment"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/comments/{cid}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.put('https://staging.citizenscience.ch/v3/comments/{cid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>PUT /comments/{cid}</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;parent&quot;: &quot;string&quot;,
+  &quot;source_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="modify/create-a-comment-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>cid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1comments/post/requestbody">#/paths/~1comments/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» parent</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>The task or project (or anything with an ID) it is related to</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="modify/create-a-comment-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Comment modified</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>New Comment created</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h1 id="c3s-api-media">Media</h1>
+
+<h2 id="get-media">get_media</h2>
+
+<p><a id="opIdget_media"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/media',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/media', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /media</code></p>
+
+<p>Get a list of media</p>
+
+<h3 id="get_media-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>search_term</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get_media-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>List of media</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="create-medium">create_medium</h2>
+
+<p><a id="opIdcreate_medium"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/media',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/media', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /media</code></p>
+
+<p>The media details (for files already on the server or remotely hosted)</p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;filetype&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;source_id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="create_medium-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1media/post/requestbody">#/paths/~1media/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» filetype</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Name of file</td>
+</tr>
+
+<tr>
+<td>» path</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Local or remote path</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>The task or project or user it is related to</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="create_medium-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Media attached</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-for-source">get_for_source</h2>
+
+<p><a id="opIdget_for_source"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/media/source/{sid}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/media/source/{sid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /media/source/{sid}</code></p>
+
+<h3 id="get_for_source-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>sid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>Source ID</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get_for_source-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Media attached</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader, anonUser
+</aside>
+
+<h2 id="return-pre-authorised-url-to-upload-media">Return pre-authorised url to upload media</h2>
+
+<p><a id="opIdget_pre_signed_url"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/media/upload',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/media/upload', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /media/upload</code></p>
+
+<h3 id="return-pre-authorised-url-to-upload-media-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>source_id</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>filename</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="return-pre-authorised-url-to-upload-media-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return presigned url</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>User does not have uploading access</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="delete-all-media-files-related-to-source">Delete all media files related to  source</h2>
+
+<p><a id="opIddelete_medium"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/media/{mid}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.delete('https://staging.citizenscience.ch/v3/media/{mid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>DELETE /media/{mid}</code></p>
+
+<h3 id="delete-all-media-files-related-to--source-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>mid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="delete-all-media-files-related-to--source-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Media deleted</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Media does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-single-medium">Get single medium</h2>
+
+<p><a id="opIdget_medium"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/media/{mid}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/media/{mid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /media/{mid}</code></p>
+
+<h3 id="get-single-medium-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>mid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;filetype&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;source_id&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-single-medium-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return Media</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Media does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-single-medium-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» filetype</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Name of file</td>
+</tr>
+
+<tr>
+<td>» path</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Local or remote path</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The task or project or user it is related to</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="put-a-single-file">Put a single file</h2>
+
+<p><a id="opIdupdate_medium"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/media/{mid}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.put('https://staging.citizenscience.ch/v3/media/{mid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>PUT /media/{mid}</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;filetype&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;source_id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="put-a-single-file-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>mid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1media/post/requestbody">#/paths/~1media/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» filetype</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Name of file</td>
+</tr>
+
+<tr>
+<td>» path</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Local or remote path</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>The task or project or user it is related to</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;filetype&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;source_id&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="put-a-single-file-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Return Media</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Media does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="put-a-single-file-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>201</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» filetype</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Name of file</td>
+</tr>
+
+<tr>
+<td>» path</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Local or remote path</td>
+</tr>
+
+<tr>
+<td>» source_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The task or project or user it is related to</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h1 id="c3s-api-projectgroups">ProjectGroups</h1>
+
+<h2 id="list-project-groups">List Project Groups</h2>
+
+<p><a id="opIdget_project_groups"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projectgroups',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projectgroups', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projectgroups</code></p>
+
+<h3 id="list-project-groups-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>search</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="list-project-groups-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return project groups</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project group does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h1 id="c3s-api-projects">Projects</h1>
+
+<h2 id="get-all-projects">Get all projects</h2>
+
+<p><a id="opIdget_projects"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects</code></p>
+
+<h3 id="get-all-projects-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>search_term</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;description&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;owned_by&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-all-projects-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return projects</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-all-projects-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» description</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» owned_by</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The ID of the user that this project is owned by</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="post-a-project">Post a project</h2>
+
+<p><a id="opIdcreate_project"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/projects', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /projects</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;description&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;owned_by&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="post-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1projects/post/requestbody">#/paths/~1projects/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» description</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» owned_by</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>The ID of the user that this project is owned by</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="post-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>New project created</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>409</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">Conflict</a></td>
+<td>Project already exists</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-row-count-of-query">Get row count of query</h2>
+
+<p><a id="opIdget_project_count"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/count',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/count', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects/count</code></p>
+
+<h3 id="get-row-count-of-query-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>search_term</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-row-count-of-query-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Row count</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="remove-a-project">Remove a project</h2>
+
+<p><a id="opIddelete_project"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.delete('https://staging.citizenscience.ch/v3/projects/{pid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>DELETE /projects/{pid}</code></p>
+
+<h3 id="remove-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="remove-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>204</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
+<td>Project was deleted</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-a-single-project">Get a single project</h2>
+
+<p><a id="opIdget_project"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects/{pid}</code></p>
+
+<h3 id="get-a-single-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-a-single-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return project</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="modify-create-a-project">Modify/Create a project</h2>
+
+<p><a id="opIdupdate_project"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.put('https://staging.citizenscience.ch/v3/projects/{pid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>PUT /projects/{pid}</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;description&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;owned_by&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="modify/create-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1projects/post/requestbody">#/paths/~1projects/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» description</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» owned_by</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>The ID of the user that this project is owned by</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="modify/create-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Project modified</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>New project created</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="import-tasks-for-a-project">Import Tasks for a project</h2>
+
+<p><a id="opIdimport_csv"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/import/csv',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/projects/{pid}/import/csv', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /projects/{pid}/import/csv</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">[]
+</code></pre>
+
+<h3 id="import-tasks-for-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The Project ID</td>
+</tr>
+
+<tr>
+<td>body</td>
+<td>body</td>
+<td>array</td>
+<td>true</td>
+<td>CSV file content</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="import-tasks-for-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Tasks imported</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Unauthorised</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="get-the-statistics-for-a-project">Get the statistics for a Project</h2>
+
+<p><a id="opIdget_stats"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/stats',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}/stats', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects/{pid}/stats</code></p>
+
+<h3 id="get-the-statistics-for-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The Project ID</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-the-statistics-for-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return project statistics</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="get-the-submissions-for-a-project">Get the submissions for a project</h2>
+
+<p><a id="opIdget_project_submissions"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/submissions',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}/submissions', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects/{pid}/submissions</code></p>
+
+<h3 id="get-the-submissions-for-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The Project ID</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-the-submissions-for-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return project submissions</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="get-user-submissions-for-a-project">Get user submissions for a project</h2>
+
+<p><a id="opIdget_project_user_submissions"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/submissions/{uid}',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}/submissions/{uid}', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects/{pid}/submissions/{uid}</code></p>
+
+<h3 id="get-user-submissions-for-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The Project ID</td>
+</tr>
+
+<tr>
+<td>uid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>User ID for specific user submissions</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-user-submissions-for-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return project submissions</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="get-a-task-for-a-project">Get a task for a project</h2>
+
+<p><a id="opIdget_random_project_task"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/task',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}/task', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects/{pid}/task</code></p>
+
+<h3 id="get-a-task-for-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The Project ID</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-a-task-for-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return random project task</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="get-the-tasks-for-a-project">Get the tasks for a project</h2>
+
+<p><a id="opIdget_project_tasks"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/tasks',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}/tasks', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /projects/{pid}/tasks</code></p>
+
+<h3 id="get-the-tasks-for-a-project-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The Project ID</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-the-tasks-for-a-project-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return project tasks</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Project does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h1 id="c3s-api-submissions">Submissions</h1>
+
+<h2 id="remove-a-submission">Remove a submission</h2>
+
+<p><a id="opIddelete_submission"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/submission/{sid}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.delete('https://staging.citizenscience.ch/v3/submission/{sid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>DELETE /submission/{sid}</code></p>
+
+<h3 id="remove-a-submission-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>sid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="remove-a-submission-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>204</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
+<td>Submission was deleted</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Submission does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-a-single-submission">Get a single submission</h2>
+
+<p><a id="opIdget_submission"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/submission/{sid}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/submission/{sid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /submission/{sid}</code></p>
+
+<h3 id="get-a-single-submission-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>sid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;task_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="get-a-single-submission-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return submission</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Submission does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-a-single-submission-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» task_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="modify-create-a-submission">Modify/Create a submission</h2>
+
+<p><a id="opIdupdate_submission"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/submission/{sid}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.put('https://staging.citizenscience.ch/v3/submission/{sid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>PUT /submission/{sid}</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;task_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="modify/create-a-submission-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>sid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1submission~1%7bsid%7d/put/requestbody">#/paths/~1submission~1%7Bsid%7D/put/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» task_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="modify/create-a-submission-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Submission modified</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>New submission created</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-all-submissions">Get all submissions</h2>
+
+<p><a id="opIdget_submissions"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/submissions',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/submissions', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /submissions</code></p>
+
+<h3 id="get-all-submissions-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>search_term</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;content&quot;: {},
+    &quot;task_id&quot;: &quot;string&quot;,
+    &quot;user_id&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-all-submissions-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>List of submissions</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-all-submissions-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» task_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="post-a-submission">Post a submission</h2>
+
+<p><a id="opIdcreate_submission"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/submissions',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/submissions', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /submissions</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;task_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="post-a-submission-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1submission~1%7bsid%7d/put/requestbody">#/paths/~1submission~1%7Bsid%7D/put/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» task_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;task_id&quot;: &quot;string&quot;,
+  &quot;user_id&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="post-a-submission-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Submission created</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="post-a-submission-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>201</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» task_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader, anonUser
+</aside>
+
+<h2 id="get-row-count-of-query-1">Get row count of query</h2>
+
+<p><a id="opIdget_submission_count"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/submissions/count',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/submissions/count', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /submissions/count</code></p>
+
+<h3 id="get-row-count-of-query-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>search_term</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-row-count-of-query-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Row count</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h1 id="c3s-api-tasks">Tasks</h1>
+
+<h2 id="post-a-single-task">Post a single task</h2>
+
+<p><a id="opIdcreate_task"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/task',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/task', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /task</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;project_id&quot;: &quot;string&quot;,
+  &quot;required&quot;: true,
+  &quot;sequence&quot;: 0,
+  &quot;title&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="post-a-single-task-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1task/post/requestbody">#/paths/~1task/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» project_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» required</td>
+<td>body</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» sequence</td>
+<td>body</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» title</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;content&quot;: {},
+    &quot;project_id&quot;: &quot;string&quot;,
+    &quot;required&quot;: true,
+    &quot;sequence&quot;: 0,
+    &quot;title&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="post-a-single-task-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Task created</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="post-a-single-task-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>201</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» project_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» required</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» sequence</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» title</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-a-list-of-tasks">Get a list of tasks</h2>
+
+<p><a id="opIdget_tasks"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/tasks', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /tasks</code></p>
+
+<h3 id="get-a-list-of-tasks-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>search_term</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;content&quot;: {},
+    &quot;project_id&quot;: &quot;string&quot;,
+    &quot;required&quot;: true,
+    &quot;sequence&quot;: 0,
+    &quot;title&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-a-list-of-tasks-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>List of tasks</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-a-list-of-tasks-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» project_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» required</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» sequence</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» title</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader, anonUser
+</aside>
+
+<h2 id="post-an-array-of-tasks">Post an array of tasks</h2>
+
+<p><a id="opIdcreate_tasks"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/tasks', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /tasks</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;content&quot;: {},
+    &quot;project_id&quot;: &quot;string&quot;,
+    &quot;required&quot;: true,
+    &quot;sequence&quot;: 0,
+    &quot;title&quot;: &quot;string&quot;,
+    &quot;info&quot;: {}
+  }
+]
+</code></pre>
+
+<h3 id="post-an-array-of-tasks-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>array[object]</td>
+<td>false</td>
+<td>List of tasks</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;content&quot;: {},
+    &quot;project_id&quot;: &quot;string&quot;,
+    &quot;required&quot;: true,
+    &quot;sequence&quot;: 0,
+    &quot;title&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="post-an-array-of-tasks-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Task created</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="post-an-array-of-tasks-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>201</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» project_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» required</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» sequence</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» title</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-row-count-of-query-2">Get row count of query</h2>
+
+<p><a id="opIdget_task_count"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks/count',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/tasks/count', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /tasks/count</code></p>
+
+<h3 id="get-row-count-of-query-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>search_term</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-row-count-of-query-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Row count</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="delete-a-single-task-warning-this-will-also-disassociate-all-submissions-for-the-task">Delete a single task. WARNING - This will also disassociate all submissions for the task</h2>
+
+<p><a id="opIddelete_task"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks/{tid}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.delete('https://staging.citizenscience.ch/v3/tasks/{tid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>DELETE /tasks/{tid}</code></p>
+
+<h3 id="delete-a-single-task.-warning---this-will-also-disassociate-all-submissions-for-the-task-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>tid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="delete-a-single-task.-warning---this-will-also-disassociate-all-submissions-for-the-task-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>204</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
+<td>Task was deleted</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-a-single-task">Get a single task</h2>
+
+<p><a id="opIdget_task"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks/{tid}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/tasks/{tid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /tasks/{tid}</code></p>
+
+<h3 id="get-a-single-task-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>tid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for an Object (i.e. User, Task, Project, Submission etc)</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;project_id&quot;: &quot;string&quot;,
+  &quot;required&quot;: true,
+  &quot;sequence&quot;: 0,
+  &quot;title&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="get-a-single-task-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return task</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Task does not exist</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-a-single-task-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» project_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» required</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» sequence</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» title</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader, anonUser
+</aside>
+
+<h2 id="modify-create-a-task">Modify/Create a task</h2>
+
+<p><a id="opIdupdate_task"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks/{tid}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.put('https://staging.citizenscience.ch/v3/tasks/{tid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>PUT /tasks/{tid}</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;content&quot;: {},
+  &quot;project_id&quot;: &quot;string&quot;,
+  &quot;required&quot;: true,
+  &quot;sequence&quot;: 0,
+  &quot;title&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="modify/create-a-task-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>tid</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for the Task</td>
+</tr>
+
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1task/post/requestbody">#/paths/~1task/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» project_id</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» required</td>
+<td>body</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» sequence</td>
+<td>body</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» title</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="modify/create-a-task-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>New task created</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-statistics-for-a-specific-task">Get statistics for a specific task</h2>
+
+<p><a id="opIdget_stats"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks/{tid}/stats',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/tasks/{tid}/stats', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /tasks/{tid}/stats</code></p>
+
+<h3 id="get-statistics-for-a-specific-task-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>tid</td>
+<td>path</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{}
+</code></pre>
+
+<h3 id="get-statistics-for-a-specific-task-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Stats for task submissions</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-statistics-for-a-specific-task-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-submissions-for-a-specific-task">Get submissions for a specific task</h2>
+
+<p><a id="opIdget_task_submissions"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks/{tid}/submissions',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/tasks/{tid}/submissions', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /tasks/{tid}/submissions</code></p>
+
+<h3 id="get-submissions-for-a-specific-task-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>tid</td>
+<td>path</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;content&quot;: {},
+    &quot;task_id&quot;: &quot;string&quot;,
+    &quot;user_id&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-submissions-for-a-specific-task-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>List of submissions</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-submissions-for-a-specific-task-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» task_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h1 id="c3s-api-users">Users</h1>
+
+<h2 id="post-auth-for-token-response">Post auth for token response</h2>
+
+<p><a id="opIdgenerate"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/authorize',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/users/authorize', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /users/authorize</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;anonymous&quot;: false,
+  &quot;api_key&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;user@example.com&quot;,
+  &quot;pwd&quot;: &quot;string&quot;,
+  &quot;username&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="post-auth-for-token-response-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1users~1authorize/post/requestbody">#/paths/~1users~1authorize/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» anonymous</td>
+<td>body</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» api_key</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string(email)</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» pwd</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» username</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="post-auth-for-token-response-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Token created</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="check-existence-of-user">Check existence of user</h2>
+
+<p><a id="opIdcheck_user"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/check',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/users/check', params={
+
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /users/check</code></p>
+
+<h3 id="check-existence-of-user-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>email</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>username</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="check-existence-of-user-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>User exists</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="allow-a-user-to-login">Allow a user to login</h2>
+
+<p><a id="opIdlogin"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/login',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/users/login', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /users/login</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;anonymous&quot;: false,
+  &quot;api_key&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;user@example.com&quot;,
+  &quot;pwd&quot;: &quot;string&quot;,
+  &quot;username&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="allow-a-user-to-login-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1users~1authorize/post/requestbody">#/paths/~1users~1authorize/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» anonymous</td>
+<td>body</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» api_key</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string(email)</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» pwd</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» username</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="allow-a-user-to-login-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Login successful</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Incorrect login details</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="delete-user-only-allowed-by-the-user-themselves">Delete user (only allowed by the user themselves)</h2>
+
+<p><a id="opIddelete_user"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/me',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.delete('https://staging.citizenscience.ch/v3/users/me', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>DELETE /users/me</code></p>
+
+<h3 id="delete-user-(only-allowed-by-the-user-themselves)-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>User deleted</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorised</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-logged-in-user">Get logged in user</h2>
+
+<p><a id="opIdget_user"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/me',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/users/me', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /users/me</code></p>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;anonymous&quot;: false,
+  &quot;api_key&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;user@example.com&quot;,
+  &quot;pwd&quot;: &quot;string&quot;,
+  &quot;username&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="get-logged-in-user-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return user</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-logged-in-user-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» anonymous</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» api_key</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» email</td>
+<td>string(email)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» pwd</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» username</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="update-user-details-change-password-add-details-etc">Update user details (change password, add details etc)</h2>
+
+<p><a id="opIdupdate_user"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/me',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.put('https://staging.citizenscience.ch/v3/users/me', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>PUT /users/me</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;anonymous&quot;: true,
+  &quot;api_key&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;user@example.com&quot;,
+  &quot;pwd&quot;: &quot;string&quot;,
+  &quot;username&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="update-user-details-(change-password,-add-details-etc)-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The unique identifer for a User</td>
+</tr>
+
+<tr>
+<td>body</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» anonymous</td>
+<td>body</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» api_key</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string(email)</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» pwd</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» username</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;anonymous&quot;: false,
+  &quot;api_key&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;user@example.com&quot;,
+  &quot;pwd&quot;: &quot;string&quot;,
+  &quot;username&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;info&quot;: {},
+  &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+}
+</code></pre>
+
+<h3 id="update-user-details-(change-password,-add-details-etc)-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>User updated</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="update-user-details-(change-password,-add-details-etc)-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>» anonymous</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» api_key</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» email</td>
+<td>string(email)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» pwd</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» username</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-all-projects-for-a-user">Get all projects for a user</h2>
+
+<p><a id="opIdget_user_projects"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/me/projects',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/users/me/projects', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /users/me/projects</code></p>
+
+<h3 id="get-all-projects-for-a-user-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>uid</td>
+<td>path</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;description&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;owned_by&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-all-projects-for-a-user-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return Projects</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-all-projects-for-a-user-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» description</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» owned_by</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The ID of the user that this project is owned by</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="get-all-submissions-for-a-user">Get all submissions for a user</h2>
+
+<p><a id="opIdget_user_submissions"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/me/submissions',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/users/me/submissions', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /users/me/submissions</code></p>
+
+<h3 id="get-all-submissions-for-a-user-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>uid</td>
+<td>path</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">[
+  {
+    &quot;content&quot;: {},
+    &quot;task_id&quot;: &quot;string&quot;,
+    &quot;user_id&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;info&quot;: {},
+    &quot;updated_at&quot;: &quot;2015-07-07T13:49:51.230000Z&quot;
+  }
+]
+</code></pre>
+
+<h3 id="get-all-submissions-for-a-user-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Return submissions</td>
+<td>Inline</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get-all-submissions-for-a-user-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[allOf]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» content</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» task_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» user_id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+<h2 id="registration-end-point-for-a-user-account">Registration end point for a user account</h2>
+
+<p><a id="opIdcreate_user"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/register',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/users/register', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /users/register</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;anonymous&quot;: false,
+  &quot;api_key&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;user@example.com&quot;,
+  &quot;pwd&quot;: &quot;string&quot;,
+  &quot;username&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="registration-end-point-for-a-user-account-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1users~1authorize/post/requestbody">#/paths/~1users~1authorize/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» anonymous</td>
+<td>body</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» api_key</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string(email)</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» pwd</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» username</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="registration-end-point-for-a-user-account-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Created user</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>409</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">Conflict</a></td>
+<td>User exists</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="reset-user-password">Reset user password</h2>
+
+<p><a id="opIdreset"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/reset',
+  method: 'get',
+  data: '?email=string',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/users/reset', params={
+  'email': 'string'
+)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /users/reset</code></p>
+
+<h3 id="reset-user-password-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>email</td>
+<td>query</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="reset-user-password-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Password reset</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="verify-password-reset-token">Verify password reset token</h2>
+
+<p><a id="opIdverify_reset"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Content-Type':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/reset',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/users/reset', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>POST /users/reset</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+
+<pre><code class="language-json">{
+  &quot;anonymous&quot;: false,
+  &quot;api_key&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;user@example.com&quot;,
+  &quot;pwd&quot;: &quot;string&quot;,
+  &quot;username&quot;: &quot;string&quot;,
+  &quot;info&quot;: {}
+}
+</code></pre>
+
+<h3 id="verify-password-reset-token-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schema#/paths/~1users~1authorize/post/requestbody">#/paths/~1users~1authorize/post/requestBody</a></td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» anonymous</td>
+<td>body</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» api_key</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» email</td>
+<td>body</td>
+<td>string(email)</td>
+<td>false</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» pwd</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>» username</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="verify-password-reset-token-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Verified and reset</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Unauthorised user</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h2 id="oauth2-token-info">OAuth2 token info</h2>
+
+<p><a id="opIdvalidate"></a></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+
+<pre><code class="language-javascript">var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/users/validate',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+</code></pre>
+
+<pre><code class="language-python">import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/users/validate', params={
+
+}, headers = headers)
+
+print r.json()
+
+</code></pre>
+
+<p><code>GET /users/validate</code></p>
+
+<h3 id="oauth2-token-info-parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>key</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+
+<pre><code class="language-json">{}
+</code></pre>
+
+<h3 id="oauth2-token-info-responses">Responses</h3>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Token info object</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="oauth2-token-info-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

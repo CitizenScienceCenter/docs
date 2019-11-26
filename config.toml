@@ -1,0 +1,5 @@
+baseURL = "https://docs.citizenscience.ch/"
+languageCode = "en-us"
+title = "Citizen Science Center Zurich"
+themesDir = "themes"
+theme = "hugo-whisper-theme"

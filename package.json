@@ -1,0 +1,15 @@
+{
+  "name": "c3sdocs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "import-swagger": "widdershins --search true --language_tabs 'javascript:Javascript' 'python:Python' --summary https://staging.citizenscience.ch/v3/openapi.json -o ./content/docs/components/backend/api.md"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "widdershins": "^3.6.7"
+  }
+}
