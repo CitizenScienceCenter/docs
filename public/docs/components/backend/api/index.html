@@ -1,85 +1,560 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.59.1" />
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>C3S API - Citizen Science Center Zurich</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="icon" href="https://docs.citizenscience.ch/favicon.png">
-
-  
-  
-  <link rel="stylesheet" href="/css/style.min.3fa7d1129d6a35378e8b2a066888d5f1c50ce77ee0a064e8851fb064235fd540.css">
-  
-
-  
-
-</head>
-
-<body class='page page-default-single'>
-  <div id="main-menu-mobile" class="main-menu-mobile">
-  <ul>
-    
-    
-  </ul>
-</div>
-  <div class="wrapper">
-    <div class='header'>
-  <div class="container">
-    <div class="logo">
-      <a href="https://docs.citizenscience.ch/"><img alt="Logo" src="/" /></a>
-    </div>
-    <div class="logo-mobile">
-      <a href="https://docs.citizenscience.ch/"><img alt="Logo" src="/" /></a>
-    </div>
-    <div id="main-menu" class="main-menu">
-  <ul>
-    
-    
-  </ul>
-</div>
-    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
-  <span class="hamburger-box">
-    <span class="hamburger-inner"></span>
-  </span>
-</button>
-  </div>
-</div>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
 
-    
-    
-    
-    
-    
-    
 
-    
-    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
-      <div class="row">
-        <div class="col-12 col-md-3 mb-3">
-          <div class="sidebar">
+<link rel="shortcut icon" href="/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
+
+<title>C3S API | Citizen Science Center Zurich</title><meta property="og:title" content="C3S API" />
+<meta property="og:description" content="C3S API v3.1.0  Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+ An API for creating, running and analysing citizen science projects" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://docs.citizenscience.ch/docs/components/backend/api/" />
+
+<meta itemprop="name" content="C3S API">
+<meta itemprop="description" content="C3S API v3.1.0  Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+ An API for creating, running and analysing citizen science projects">
+
+
+
+<meta itemprop="wordCount" content="6400">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C3S API"/>
+<meta name="twitter:description" content="C3S API v3.1.0  Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+ An API for creating, running and analysing citizen science projects"/>
+
+
+
+
+
+<link rel="preload" href="/scss/main.min.3177251c21f1129619314d43832471045384bcaced504b68ef33e7ee499a1e99.css" as="style">
+<link href="/scss/main.min.3177251c21f1129619314d43832471045384bcaced504b68ef33e7ee499a1e99.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+
+    <title>C3S API | Citizen Science Center Zurich</title>
+  </head>
+  <body class="td-page">
+    <header>
+      
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="/">
+		<span class="navbar-logo"></span><span class="text-uppercase font-weight-bold">Citizen Science Center Zurich</span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				<a class="nav-link" href="/" ><span>Home</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				<a class="nav-link" href="/docs/" ><span>Docs</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block"></div>
+</nav>
+
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
             
-<div class="docs-menu">
-  <h4>Docs</h4>
+
+
+
+
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  
+  <form class="td-sidebar__search d-flex align-items-center">
+    
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  
+  <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
+    
+    
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section"></a>
+  </li>
   <ul>
-    
-    <li class="active ">
-      <a href="https://docs.citizenscience.ch/docs/components/backend/api/">C3S API</a>
+    <li class="collapse show" id="docs">
+      
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/components/documentation/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Documentation</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-components-documentation">
+      
+      
+      
     </li>
-    
   </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/components/backend/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Backend</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="docs-components-backend">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-backend-storage" href="/docs/components/backend/storage/">Object Storage</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-backend-server" href="/docs/components/backend/server/">Server</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docs-components-backend-api" href="/docs/components/backend/api/">C3S API</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/deployment/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Deployment</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-deployment">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-deployment-static" href="/docs/deployment/static/">Static Sites</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-deployment-docker" href="/docs/deployment/docker/">Docker</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-deployment-kubernetes" href="/docs/deployment/kubernetes/">Kubernetes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-deployment-science-cloud" href="/docs/deployment/science_cloud/">Science Cloud</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-deployment-secrets-and-passwords" href="/docs/deployment/secrets_and_passwords/">Secrets and Passwords</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/components/frontend/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Frontend</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-components-frontend">
+      
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/components/frontend/sites/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Project Sites</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-components-frontend-sites">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-frontend-sites-citizenscience" href="/docs/components/frontend/sites/citizenscience/">Citizen Science</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-frontend-sites-hatespeech" href="/docs/components/frontend/sites/hatespeech/">Hatespeech</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-frontend-sites-mustelid" href="/docs/components/frontend/sites/mustelid/">Mustelid</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-frontend-sites-snakes-v1" href="/docs/components/frontend/sites/snakes-v1/">Snakes v1</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-frontend-sites-snakes-v2" href="/docs/components/frontend/sites/snakes-v2/">Snakes v2</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-frontend-sites-wenker" href="/docs/components/frontend/sites/wenker/">Wenker</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/components/frontend/project-builder/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Builder</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-components-frontend-project-builder">
+      
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/components/frontend/project-builder/components/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section"></a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-components-frontend-project-builder-components">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/components/libraries/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Libraries</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-components-libraries">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-libraries-jtos" href="/docs/components/libraries/jtos/">JTOS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-components-libraries-vuex-c3s" href="/docs/components/libraries/vuex-c3s/">Vuex-C3s</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/contributing/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section"></a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-contributing">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+    </li>
+  </ul>
+</ul>
+
+  </nav>
 </div>
+
+
+
 
           </div>
-        </div>
-        <div class="col-12 col-md-9">
-          
-<h1 class="title">C3S API</h1>
-<div class="content ">
-  
+          <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
+            
+
+
+
+
+
+
+
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#authentication">Authentication</a>
+<ul>
+<li><a href="#get-a-single-comment">Get a single comment</a></li>
+<li><a href="#post-a-comment">Post a comment</a></li>
+<li><a href="#remove-a-comment">Remove a Comment</a></li>
+<li><a href="#modify-create-a-comment">Modify/Create a Comment</a></li>
+<li><a href="#get-media">get_media</a></li>
+<li><a href="#create-medium">create_medium</a></li>
+<li><a href="#get-for-source">get_for_source</a></li>
+<li><a href="#return-pre-authorised-url-to-upload-media">Return pre-authorised url to upload media</a></li>
+<li><a href="#delete-all-media-files-related-to-source">Delete all media files related to  source</a></li>
+<li><a href="#get-single-medium">Get single medium</a></li>
+<li><a href="#put-a-single-file">Put a single file</a></li>
+<li><a href="#list-project-groups">List Project Groups</a></li>
+<li><a href="#get-all-projects">Get all projects</a></li>
+<li><a href="#post-a-project">Post a project</a></li>
+<li><a href="#get-row-count-of-query">Get row count of query</a></li>
+<li><a href="#remove-a-project">Remove a project</a></li>
+<li><a href="#get-a-single-project">Get a single project</a></li>
+<li><a href="#modify-create-a-project">Modify/Create a project</a></li>
+<li><a href="#import-tasks-for-a-project">Import Tasks for a project</a></li>
+<li><a href="#get-the-statistics-for-a-project">Get the statistics for a Project</a></li>
+<li><a href="#get-the-submissions-for-a-project">Get the submissions for a project</a></li>
+<li><a href="#get-user-submissions-for-a-project">Get user submissions for a project</a></li>
+<li><a href="#get-a-task-for-a-project">Get a task for a project</a></li>
+<li><a href="#get-the-tasks-for-a-project">Get the tasks for a project</a></li>
+<li><a href="#remove-a-submission">Remove a submission</a></li>
+<li><a href="#get-a-single-submission">Get a single submission</a></li>
+<li><a href="#modify-create-a-submission">Modify/Create a submission</a></li>
+<li><a href="#get-all-submissions">Get all submissions</a></li>
+<li><a href="#post-a-submission">Post a submission</a></li>
+<li><a href="#get-row-count-of-query-1">Get row count of query</a></li>
+<li><a href="#post-a-single-task">Post a single task</a></li>
+<li><a href="#get-a-list-of-tasks">Get a list of tasks</a></li>
+<li><a href="#post-an-array-of-tasks">Post an array of tasks</a></li>
+<li><a href="#get-row-count-of-query-2">Get row count of query</a></li>
+<li><a href="#delete-a-single-task-warning-this-will-also-disassociate-all-submissions-for-the-task">Delete a single task. WARNING - This will also disassociate all submissions for the task</a></li>
+<li><a href="#get-a-single-task">Get a single task</a></li>
+<li><a href="#modify-create-a-task">Modify/Create a task</a></li>
+<li><a href="#get-statistics-for-a-specific-task">Get statistics for a specific task</a></li>
+<li><a href="#get-submissions-for-a-specific-task">Get submissions for a specific task</a></li>
+<li><a href="#post-auth-for-token-response">Post auth for token response</a></li>
+<li><a href="#check-existence-of-user">Check existence of user</a></li>
+<li><a href="#allow-a-user-to-login">Allow a user to login</a></li>
+<li><a href="#delete-user-only-allowed-by-the-user-themselves">Delete user (only allowed by the user themselves)</a></li>
+<li><a href="#get-logged-in-user">Get logged in user</a></li>
+<li><a href="#update-user-details-change-password-add-details-etc">Update user details (change password, add details etc)</a></li>
+<li><a href="#get-all-projects-for-a-user">Get all projects for a user</a></li>
+<li><a href="#get-all-submissions-for-a-user">Get all submissions for a user</a></li>
+<li><a href="#registration-end-point-for-a-user-account">Registration end point for a user account</a></li>
+<li><a href="#reset-user-password">Reset user password</a></li>
+<li><a href="#verify-password-reset-token">Verify password reset token</a></li>
+<li><a href="#oauth2-token-info">OAuth2 token info</a></li>
+</ul></li>
+</ul>
+</nav>
+
+
+
+          </div>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
+	<ol class="breadcrumb spb-1">
+		
+
+
+
+
+
+
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="https://docs.citizenscience.ch/docs/"></a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="https://docs.citizenscience.ch/docs/components/backend/">Backend</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="https://docs.citizenscience.ch/docs/components/backend/api/">C3S API</a>
+</li>
+
+	</ol>
+</nav	>
+
+            
+<div class="td-content">
+	<h1>C3S API</h1>
+	
+	
 
 <h1 id="c3s-api">C3S API v3.1.0</h1>
 
@@ -7100,45 +7575,51 @@ print r.json()
 This operation does not require authentication
 </aside>
 
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">Last modified January 1, 0001
 </div>
 </div>
 
+
+          </main>
         </div>
       </div>
-    </div>
-    
-  </div>
-
-  <div class="sub-footer">
-  <div class="container">
+      
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
     <div class="row">
-      <div class="col-12">
-        <div class="sub-footer-inner">
-          <ul>
-            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
-          </ul>
-        </div>
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+      </div>
+      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+        
+        
+	
+		
+	
       </div>
     </div>
   </div>
-</div>
+</footer>
 
-  
 
-  
-  
-
-  
-  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
-  
-
-  
-  
-  
+    </div>
     
-  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 
-</body>
 
+
+
+
+<script src="/js/main.min.2def33a8f063ceb94e6c822124578bd13c9ad050c5f8902d242357a75fe44418.js" integrity="sha256-Le8zqPBjzrlObIIhJFeL0Tya0FDF&#43;JAtJCNXp1/kRBg=" crossorigin="anonymous"></script>
+
+
+
+  </body>
 </html>

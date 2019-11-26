@@ -2,4 +2,36 @@ baseURL = "https://docs.citizenscience.ch/"
 languageCode = "en-us"
 title = "Citizen Science Center Zurich"
 themesDir = "themes"
-theme = "hugo-whisper-theme"
+theme = "docsy"
+
+summaryLength = 30
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Docs"
+    url = "/docs/"
+    weight = 2
+
+[params]
+  google_analytics_id=""
+  homepage_button_link = '/docs'
+  homepage_button_text = 'Read The Docs'
+  homepage_intro = 'Citizen Science Center Zurich'
+  # homepage_image = '/images/terminal.gif'
+
+  ## You can enable to add anchor links to header elements
+  enable_anchor_link = true
+
+  [params.homepage_meta_tags]
+    meta_description = "C3S"
+    meta_og_title = "Api Docs"
+    meta_og_type = "website"
+    meta_og_description = "Hugo Whisper is a documentation theme built with Hugo."
+
+  [params.logo]
+      mobile = "/images/logo.svg"
+      standard  = "/images/logo.svg"
