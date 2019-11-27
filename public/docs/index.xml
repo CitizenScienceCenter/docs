@@ -7630,6 +7630,12 @@ Deployment Method: now&lt;/p&gt;
         
         
 
+&lt;h2 id=&#34;citizen-science-account&#34;&gt;Citizen Science Account&lt;/h2&gt;
+
+&lt;p&gt;For management of these services, we use the &lt;code&gt;dev@citizenscience.ch&lt;/code&gt; as an entry point. A password should have been made available to you, and you can use this to give you Github access, as well as access to packages and other accounts.&lt;/p&gt;
+
+&lt;p&gt;More esoteric passwords (accounts, email info) can be found in the &lt;a href=&#34;https://bitwarden.com&#34;&gt;Bitwarden&lt;/a&gt; account for &lt;code&gt;dev@citizenscience.ch&lt;/code&gt;&lt;/p&gt;
+
 &lt;h2 id=&#34;github&#34;&gt;Github&lt;/h2&gt;
 
 &lt;p&gt;You will need to become a member of the &lt;code&gt;CitizenScienceCenter&lt;/code&gt; organization on Github. Ask one of the existing members for them to approve your access.&lt;/p&gt;
@@ -7695,6 +7701,66 @@ Deployment Method: On Wenker server, no longer active&lt;/p&gt;
         &lt;p&gt;Contact Person: &lt;a href=&#34;amdurso@gmail.com&#34;&gt;Andrew Durso&lt;/a&gt;
 API Version: v2
 Deployment Method: now&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: SSL Certificates</title>
+      <link>https://docs.citizenscience.ch/docs/deployment/certificates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.citizenscience.ch/docs/deployment/certificates/</guid>
+      <description>
+        
+        
+        
+
+&lt;h2 id=&#34;now-sh&#34;&gt;Now.sh&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Now&lt;/code&gt; handles all of the SSL for static sites, BUT you will need to be ensure that the domain is routed correctly to &lt;code&gt;Now&lt;/code&gt;. This can be seen under the &lt;code&gt;domains&lt;/code&gt; section of the site and DNS zones can be edited at &lt;code&gt;hostpoint.ch&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;letsencrypt&#34;&gt;LetsEncrypt&lt;/h2&gt;
+
+&lt;p&gt;All servers within ScienceCloud could be hosting a domain, and we use LetsEncrypt for this. The command line tool, &lt;code&gt;certbot&lt;/code&gt; will handle this for us.&lt;/p&gt;
+
+&lt;h3 id=&#34;installing&#34;&gt;Installing&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;apt install certbot python-certbot-nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;certbot --nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NB. Always choose to Redirect and make sure to restart nginx (&lt;code&gt;service nginx restart&lt;/code&gt;) if you make any config changes&lt;/p&gt;
+
+&lt;h2 id=&#34;kubernetes&#34;&gt;Kubernetes&lt;/h2&gt;
+
+&lt;p&gt;Kubernetes uses &lt;code&gt;cert-manager&lt;/code&gt; to handle certificates and this needs a &lt;code&gt;ClusterIssuer&lt;/code&gt; role that links to &lt;code&gt;LetsEncrypt&lt;/code&gt;. Documentation can be found here or an ansible script will explain it &lt;a href=&#34;https://github.com/encima/ansible_k8s/blob/master/6_nginx.yaml&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Note, it is easier to use &lt;code&gt;helm&lt;/code&gt; to install cert-manager, but it is &lt;strong&gt;not&lt;/strong&gt; an automated process. When uninstalling, be sure to clean up hanging namespaces and secrets!&lt;/p&gt;
+
+&lt;h2 id=&#34;openshift&#34;&gt;OpenShift&lt;/h2&gt;
+
+&lt;p&gt;OpenShift has auto certificate handling but it can also use pre-generated &lt;code&gt;pem&lt;/code&gt; files, these must be added when you create a &lt;code&gt;Route&lt;/code&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Testing</title>
+      <link>https://docs.citizenscience.ch/docs/deployment/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.citizenscience.ch/docs/deployment/testing/</guid>
+      <description>
+        
+        
+        
+
+&lt;h2 id=&#34;travis-ci&#34;&gt;Travis CI&lt;/h2&gt;
 
       </description>
     </item>
