@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "import-swagger": "widdershins --search true --language_tabs 'javascript:Javascript' 'python:Python' --summary https://staging.citizenscience.ch/v3/openapi.json -o ./content/docs/components/backend/api.md",
-    "import-vuex-docs": "wget https://raw.githubusercontent.com/CitizenScienceCenter/vuex-c3s/feature/oa3/DOCS.md -o content/docs/components/libraries/vuex-c3s-docs.md"
+    "import-vuex-docs": "sh scripts/import-vuex-docs.md",
+    "deploy": "hugo && cd public && now --prod"
   },
   "author": "",
   "license": "ISC",

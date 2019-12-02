@@ -1,3 +1,7 @@
+--- 
+ title: Vuex-C3S Documentation 
+ linkTitle: Vuex-C3S Documentation 
+---
 ## Modules
 
 <dl>
