@@ -7,7 +7,7 @@
       "headers": { "cache-control": "max-age=31536000, immutable" }
     },
     { "handle": "filesystem" },
-    { "src": ".*", "dest": "/" }
+    { "src": "./public/*", "dest": "/" }
   ],
   "alias": "docs.citizenscience.ch"
 }

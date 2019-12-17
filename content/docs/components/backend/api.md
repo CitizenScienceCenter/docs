@@ -7,10 +7,11 @@ toc_footers: []
 includes: []
 search: true
 highlight_theme: darkula
+headingLevel: 2
 
 ---
 
-<h1 id="c3s-api">C3S API v3.1.0</h1>
+<h1 id="c3s-api">C3S API v3.1.1</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -43,19 +44,18 @@ Base URLs:
 
 ## Get a single comment
 
-<a id="opIdget_comment"></a>
+<a id="opIdget_comments"></a>
 
 > Code samples
 
 ```javascript
 var headers = {
-  'Accept':'application/json',
-  'X-API-KEY':'API_KEY'
+  'Accept':'application/json'
 
 };
 
 $.ajax({
-  url: 'https://staging.citizenscience.ch/v3/comments/{cid}',
+  url: 'https://staging.citizenscience.ch/v3/comments',
   method: 'get',
 
   headers: headers,
@@ -69,11 +69,10 @@ $.ajax({
 ```python
 import requests
 headers = {
-  'Accept': 'application/json',
-  'X-API-KEY': 'API_KEY'
+  'Accept': 'application/json'
 }
 
-r = requests.get('https://staging.citizenscience.ch/v3/comments/{cid}', params={
+r = requests.get('https://staging.citizenscience.ch/v3/comments', params={
 
 }, headers = headers)
 
@@ -81,37 +80,39 @@ print r.json()
 
 ```
 
-`GET /comments/{cid}`
+`GET /comments`
 
 <h3 id="get-a-single-comment-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|cid|path|string|true|The unique identifer for an Object (i.e. User, Task, Project, Submission etc)|
+|search_term|query|string|false|none|
+|limit|query|integer|false|none|
 
 > Example responses
 
 > 200 Response
 
 ```json
-{
-  "content": {},
-  "parent": "string",
-  "source_id": "string",
-  "user_id": "string",
-  "created_at": "2015-07-07T13:49:51.230000Z",
-  "id": "string",
-  "info": {},
-  "updated_at": "2015-07-07T13:49:51.230000Z"
-}
+[
+  {
+    "content": {},
+    "parent": "string",
+    "source_id": "string",
+    "user_id": "string",
+    "created_at": "2015-07-07T13:49:51.230000Z",
+    "id": "string",
+    "info": {},
+    "updated_at": "2015-07-07T13:49:51.230000Z"
+  }
+]
 ```
 
 <h3 id="get-a-single-comment-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return comment|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Comment does not exist|None|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of comments|Inline|
 
 <h3 id="get-a-single-comment-responseschema">Response Schema</h3>
 
@@ -119,14 +120,14 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|*anonymous*|[allOf]|false|none|none|
 |» content|object|true|none|none|
 |» parent|string|false|none|none|
 |» source_id|string|true|none|The task or project (or anything with an ID) it is related to|
 |» user_id|string|true|none|none|
 
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader, anonUser
+<aside class="success">
+This operation does not require authentication
 </aside>
 
 ## Post a comment
@@ -189,11 +190,7 @@ print r.json()
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[#/paths/~1comments/post/requestBody](#schema#/paths/~1comments/post/requestbody)|false|none|
-|» content|body|object|true|none|
-|» parent|body|string|false|none|
-|» source_id|body|string|true|The task or project (or anything with an ID) it is related to|
-|» user_id|body|string|true|none|
+|body|body|[#/paths/~1comments/get/responses/200/content/application~1json/schema/items](#schema#/paths/~1comments/get/responses/200/content/application~1json/schema/items)|false|none|
 
 > Example responses
 
@@ -233,141 +230,6 @@ Status Code **201**
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 apiKeyHeader, anonUser
-</aside>
-
-## Remove a Comment
-
-<a id="opIddelete_comment"></a>
-
-> Code samples
-
-```javascript
-var headers = {
-  'X-API-KEY':'API_KEY'
-
-};
-
-$.ajax({
-  url: 'https://staging.citizenscience.ch/v3/comments/{cid}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```python
-import requests
-headers = {
-  'X-API-KEY': 'API_KEY'
-}
-
-r = requests.delete('https://staging.citizenscience.ch/v3/comments/{cid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`DELETE /comments/{cid}`
-
-<h3 id="remove-a-comment-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|cid|path|string|true|The unique identifer for an Object (i.e. User, Task, Project, Submission etc)|
-
-<h3 id="remove-a-comment-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Comment was deleted|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Comment does not exist|None|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader
-</aside>
-
-## Modify/Create a Comment
-
-<a id="opIdupdate_comment"></a>
-
-> Code samples
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'X-API-KEY':'API_KEY'
-
-};
-
-$.ajax({
-  url: 'https://staging.citizenscience.ch/v3/comments/{cid}',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'X-API-KEY': 'API_KEY'
-}
-
-r = requests.put('https://staging.citizenscience.ch/v3/comments/{cid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`PUT /comments/{cid}`
-
-> Body parameter
-
-```json
-{
-  "content": {},
-  "parent": "string",
-  "source_id": "string",
-  "user_id": "string",
-  "info": {}
-}
-```
-
-<h3 id="modify/create-a-comment-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|cid|path|string|true|The unique identifer for an Object (i.e. User, Task, Project, Submission etc)|
-|body|body|[#/paths/~1comments/post/requestBody](#schema#/paths/~1comments/post/requestbody)|false|none|
-|» content|body|object|true|none|
-|» parent|body|string|false|none|
-|» source_id|body|string|true|The task or project (or anything with an ID) it is related to|
-|» user_id|body|string|true|none|
-
-<h3 id="modify/create-a-comment-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Comment modified|None|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|New Comment created|None|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader
 </aside>
 
 <h1 id="c3s-api-media">Media</h1>
@@ -483,11 +345,7 @@ The media details (for files already on the server or remotely hosted)
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[#/paths/~1media/post/requestBody](#schema#/paths/~1media/post/requestbody)|false|none|
-|» filetype|body|string|false|none|
-|» name|body|string|true|Name of file|
-|» path|body|string|true|Local or remote path|
-|» source_id|body|string|true|The task or project or user it is related to|
+|body|body|[#/paths/~1media~1%7Bmid%7D/get/responses/200/content/application~1json/schema/items](#schema#/paths/~1media~1%7bmid%7d/get/responses/200/content/application~1json/schema/items)|false|none|
 
 <h3 id="create_medium-responses">Responses</h3>
 
@@ -500,64 +358,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 apiKeyHeader
 </aside>
 
-## get_for_source
-
-<a id="opIdget_for_source"></a>
-
-> Code samples
-
-```javascript
-var headers = {
-  'X-API-KEY':'API_KEY'
-
-};
-
-$.ajax({
-  url: 'https://staging.citizenscience.ch/v3/media/source/{sid}',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```python
-import requests
-headers = {
-  'X-API-KEY': 'API_KEY'
-}
-
-r = requests.get('https://staging.citizenscience.ch/v3/media/source/{sid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /media/source/{sid}`
-
-<h3 id="get_for_source-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|sid|path|string|true|Source ID|
-
-<h3 id="get_for_source-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Media attached|None|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader, anonUser
-</aside>
-
-## Return pre-authorised url to upload media
+## Return pre-authorised url to upload media to Minio
 
 <a id="opIdget_pre_signed_url"></a>
 
@@ -597,14 +398,14 @@ print r.json()
 
 `GET /media/upload`
 
-<h3 id="return-pre-authorised-url-to-upload-media-parameters">Parameters</h3>
+<h3 id="return-pre-authorised-url-to-upload-media-to-minio-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |source_id|query|string|false|none|
 |filename|query|string|false|none|
 
-<h3 id="return-pre-authorised-url-to-upload-media-responses">Responses</h3>
+<h3 id="return-pre-authorised-url-to-upload-media-to-minio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -809,13 +610,7 @@ print r.json()
 > Body parameter
 
 ```json
-{
-  "filetype": "string",
-  "name": "string",
-  "path": "string",
-  "source_id": "string",
-  "info": {}
-}
+{}
 ```
 
 <h3 id="put-a-single-file-parameters">Parameters</h3>
@@ -823,11 +618,7 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |mid|path|string|true|The unique identifer for an Object (i.e. User, Task, Project, Submission etc)|
-|body|body|[#/paths/~1media/post/requestBody](#schema#/paths/~1media/post/requestbody)|false|none|
-|» filetype|body|string|false|none|
-|» name|body|string|true|Name of file|
-|» path|body|string|true|Local or remote path|
-|» source_id|body|string|true|The task or project or user it is related to|
+|body|body|object|false|none|
 
 > Example responses
 
@@ -880,7 +671,7 @@ apiKeyHeader
 ```javascript
 
 $.ajax({
-  url: 'https://staging.citizenscience.ch/v3/projectgroups',
+  url: 'https://staging.citizenscience.ch/v3/project_groups',
   method: 'get',
 
   success: function(data) {
@@ -893,7 +684,7 @@ $.ajax({
 ```python
 import requests
 
-r = requests.get('https://staging.citizenscience.ch/v3/projectgroups', params={
+r = requests.get('https://staging.citizenscience.ch/v3/project_groups', params={
 
 )
 
@@ -901,7 +692,7 @@ print r.json()
 
 ```
 
-`GET /projectgroups`
+`GET /project_groups`
 
 <h3 id="list-project-groups-parameters">Parameters</h3>
 
@@ -916,6 +707,106 @@ print r.json()
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return project groups|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Project group does not exist|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Get Project Group by ID
+
+<a id="opIdget_project_group"></a>
+
+> Code samples
+
+```javascript
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/project_groups/{gid}',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```python
+import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/project_groups/{gid}', params={
+
+)
+
+print r.json()
+
+```
+
+`GET /project_groups/{gid}`
+
+<h3 id="get-project-group-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|gid|path|string|true|none|
+
+<h3 id="get-project-group-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return project group|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Project group does not exist|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## List Project Groups Projects
+
+<a id="opIdget_project_group_projects"></a>
+
+> Code samples
+
+```javascript
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/project_groups/{gid}/projects',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```python
+import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/project_groups/{gid}/projects', params={
+
+)
+
+print r.json()
+
+```
+
+`GET /project_groups/{gid}/projects`
+
+<h3 id="list-project-groups-projects-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|gid|path|string|true|The Project Group ID|
+|limit|query|integer|false|none|
+|offset|query|integer|false|none|
+
+<h3 id="list-project-groups-projects-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return projects that are part of a project group|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Project group does not exist|None|
 
 <aside class="success">
@@ -970,6 +861,7 @@ print r.json()
 |---|---|---|---|---|
 |search_term|query|string|false|none|
 |limit|query|integer|false|none|
+|offset|query|integer|false|none|
 
 > Example responses
 
@@ -1067,10 +959,7 @@ print r.json()
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[#/paths/~1projects/post/requestBody](#schema#/paths/~1projects/post/requestbody)|false|none|
-|» description|body|string|true|none|
-|» name|body|string|true|none|
-|» owned_by|body|string|false|The ID of the user that this project is owned by|
+|body|body|[#/paths/~1projects/get/responses/200/content/application~1json/schema/items](#schema#/paths/~1projects/get/responses/200/content/application~1json/schema/items)|false|none|
 
 <h3 id="post-a-project-responses">Responses</h3>
 
@@ -1078,63 +967,6 @@ print r.json()
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|New project created|None|
 |409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|Project already exists|None|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader
-</aside>
-
-## Get row count of query
-
-<a id="opIdget_project_count"></a>
-
-> Code samples
-
-```javascript
-var headers = {
-  'X-API-KEY':'API_KEY'
-
-};
-
-$.ajax({
-  url: 'https://staging.citizenscience.ch/v3/projects/count',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```python
-import requests
-headers = {
-  'X-API-KEY': 'API_KEY'
-}
-
-r = requests.get('https://staging.citizenscience.ch/v3/projects/count', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /projects/count`
-
-<h3 id="get-row-count-of-query-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|search_term|query|string|false|none|
-
-<h3 id="get-row-count-of-query-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Row count|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1293,12 +1125,7 @@ print r.json()
 > Body parameter
 
 ```json
-{
-  "description": "string",
-  "name": "string",
-  "owned_by": "string",
-  "info": {}
-}
+{}
 ```
 
 <h3 id="modify/create-a-project-parameters">Parameters</h3>
@@ -1306,10 +1133,7 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |pid|path|string|true|The unique identifer for an Object (i.e. User, Task, Project, Submission etc)|
-|body|body|[#/paths/~1projects/post/requestBody](#schema#/paths/~1projects/post/requestbody)|false|none|
-|» description|body|string|true|none|
-|» name|body|string|true|none|
-|» owned_by|body|string|false|The ID of the user that this project is owned by|
+|body|body|object|false|none|
 
 <h3 id="modify/create-a-project-responses">Responses</h3>
 
@@ -1323,9 +1147,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 apiKeyHeader
 </aside>
 
-## Import Tasks for a project
+## Import Tasks for a project using a CSV, this endpoint will NOT replace existing tasks
 
-<a id="opIdimport_csv"></a>
+<a id="opIdimport_tasks_csv"></a>
 
 > Code samples
 
@@ -1336,7 +1160,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/import/csv',
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/import/tasks/csv',
   method: 'post',
 
   headers: headers,
@@ -1353,7 +1177,7 @@ headers = {
   'Content-Type': 'application/json'
 }
 
-r = requests.post('https://staging.citizenscience.ch/v3/projects/{pid}/import/csv', params={
+r = requests.post('https://staging.citizenscience.ch/v3/projects/{pid}/import/tasks/csv', params={
 
 }, headers = headers)
 
@@ -1361,7 +1185,7 @@ print r.json()
 
 ```
 
-`POST /projects/{pid}/import/csv`
+`POST /projects/{pid}/import/tasks/csv`
 
 > Body parameter
 
@@ -1369,14 +1193,179 @@ print r.json()
 []
 ```
 
-<h3 id="import-tasks-for-a-project-parameters">Parameters</h3>
+<h3 id="import-tasks-for-a-project-using-a-csv,-this-endpoint-will-not-replace-existing-tasks-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |pid|path|string|true|The Project ID|
 |body|body|array|true|CSV file content|
 
-<h3 id="import-tasks-for-a-project-responses">Responses</h3>
+<h3 id="import-tasks-for-a-project-using-a-csv,-this-endpoint-will-not-replace-existing-tasks-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Tasks imported|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorised|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Project does not exist|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Get the media for a project
+
+<a id="opIdget_project_media"></a>
+
+> Code samples
+
+```javascript
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/media',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```python
+import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}/media', params={
+
+)
+
+print r.json()
+
+```
+
+`GET /projects/{pid}/media`
+
+<h3 id="get-the-media-for-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|pid|path|string|true|The Project ID|
+|limit|query|integer|false|none|
+|offset|query|integer|false|none|
+
+<h3 id="get-the-media-for-a-project-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return project media|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Project does not exist|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Apply for a project to be published
+
+<a id="opIdpublish"></a>
+
+> Code samples
+
+```javascript
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/publish',
+  method: 'get',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```python
+import requests
+
+r = requests.get('https://staging.citizenscience.ch/v3/projects/{pid}/publish', params={
+
+)
+
+print r.json()
+
+```
+
+`GET /projects/{pid}/publish`
+
+<h3 id="apply-for-a-project-to-be-published-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|pid|path|string|true|The Project ID|
+
+<h3 id="apply-for-a-project-to-be-published-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Project Published|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Project does not exist|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Import Tasks for a project using a CSV, this endpoint WILL replace ALL existing tasks
+
+<a id="opIdreimport_tasks_csv"></a>
+
+> Code samples
+
+```javascript
+var headers = {
+  'Content-Type':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/projects/{pid}/reimport/tasks/csv',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.post('https://staging.citizenscience.ch/v3/projects/{pid}/reimport/tasks/csv', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+`POST /projects/{pid}/reimport/tasks/csv`
+
+> Body parameter
+
+```json
+[]
+```
+
+<h3 id="import-tasks-for-a-project-using-a-csv,-this-endpoint-will-replace-all-existing-tasks-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|pid|path|string|true|The Project ID|
+|body|body|array|true|CSV file content|
+
+<h3 id="import-tasks-for-a-project-using-a-csv,-this-endpoint-will-replace-all-existing-tasks-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1538,7 +1527,7 @@ This operation does not require authentication
 
 ## Get a task for a project
 
-<a id="opIdget_random_project_task"></a>
+<a id="opIdget_project_task"></a>
 
 > Code samples
 
@@ -1573,6 +1562,8 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |pid|path|string|true|The Project ID|
+|random|query|boolean|false|Select a random task?|
+|index|query|integer|false|index|
 
 <h3 id="get-a-task-for-a-project-responses">Responses</h3>
 
@@ -1827,12 +1818,7 @@ print r.json()
 > Body parameter
 
 ```json
-{
-  "content": {},
-  "task_id": "string",
-  "user_id": "string",
-  "info": {}
-}
+{}
 ```
 
 <h3 id="modify/create-a-submission-parameters">Parameters</h3>
@@ -1840,10 +1826,7 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |sid|path|string|true|The unique identifer for an Object (i.e. User, Task, Project, Submission etc)|
-|body|body|[#/paths/~1submission~1%7Bsid%7D/put/requestBody](#schema#/paths/~1submission~1%7bsid%7d/put/requestbody)|false|none|
-|» content|body|object|false|none|
-|» task_id|body|string|true|none|
-|» user_id|body|string|true|none|
+|body|body|object|false|none|
 
 <h3 id="modify/create-a-submission-responses">Responses</h3>
 
@@ -2002,10 +1985,7 @@ print r.json()
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[#/paths/~1submission~1%7Bsid%7D/put/requestBody](#schema#/paths/~1submission~1%7bsid%7d/put/requestbody)|false|none|
-|» content|body|object|false|none|
-|» task_id|body|string|true|none|
-|» user_id|body|string|true|none|
+|body|body|[#/paths/~1submissions/get/responses/200/content/application~1json/schema/items](#schema#/paths/~1submissions/get/responses/200/content/application~1json/schema/items)|false|none|
 
 > Example responses
 
@@ -2042,63 +2022,6 @@ Status Code **201**
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 apiKeyHeader, anonUser
-</aside>
-
-## Get row count of query
-
-<a id="opIdget_submission_count"></a>
-
-> Code samples
-
-```javascript
-var headers = {
-  'X-API-KEY':'API_KEY'
-
-};
-
-$.ajax({
-  url: 'https://staging.citizenscience.ch/v3/submissions/count',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```python
-import requests
-headers = {
-  'X-API-KEY': 'API_KEY'
-}
-
-r = requests.get('https://staging.citizenscience.ch/v3/submissions/count', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /submissions/count`
-
-<h3 id="get-row-count-of-query-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|search_term|query|string|false|none|
-
-<h3 id="get-row-count-of-query-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Row count|None|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader
 </aside>
 
 <h1 id="c3s-api-tasks">Tasks</h1>
@@ -2152,7 +2075,7 @@ print r.json()
 ```json
 {
   "content": {},
-  "project_id": "string",
+  "part_of": "string",
   "required": true,
   "sequence": 0,
   "title": "string",
@@ -2164,12 +2087,7 @@ print r.json()
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[#/paths/~1task/post/requestBody](#schema#/paths/~1task/post/requestbody)|false|none|
-|» content|body|object|true|none|
-|» project_id|body|string|true|none|
-|» required|body|boolean|false|none|
-|» sequence|body|integer|false|none|
-|» title|body|string|true|none|
+|body|body|[#/paths/~1task/post/responses/201/content/application~1json/schema/items](#schema#/paths/~1task/post/responses/201/content/application~1json/schema/items)|false|none|
 
 > Example responses
 
@@ -2179,7 +2097,7 @@ print r.json()
 [
   {
     "content": {},
-    "project_id": "string",
+    "part_of": "string",
     "required": true,
     "sequence": 0,
     "title": "string",
@@ -2204,8 +2122,25 @@ Status Code **201**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[allOf]|false|none|none|
-|» content|object|true|none|none|
-|» project_id|string|true|none|none|
+|» content|any|true|none|none|
+
+*oneOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|object|false|none|none|
+
+*xor*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|array|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» part_of|string|true|none|none|
 |» required|boolean|false|none|none|
 |» sequence|integer|false|none|none|
 |» title|string|true|none|none|
@@ -2273,7 +2208,7 @@ print r.json()
 [
   {
     "content": {},
-    "project_id": "string",
+    "part_of": "string",
     "required": true,
     "sequence": 0,
     "title": "string",
@@ -2298,8 +2233,25 @@ Status Code **200**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[allOf]|false|none|none|
-|» content|object|true|none|none|
-|» project_id|string|true|none|none|
+|» content|any|true|none|none|
+
+*oneOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|object|false|none|none|
+
+*xor*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|array|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» part_of|string|true|none|none|
 |» required|boolean|false|none|none|
 |» sequence|integer|false|none|none|
 |» title|string|true|none|none|
@@ -2359,7 +2311,7 @@ print r.json()
 [
   {
     "content": {},
-    "project_id": "string",
+    "part_of": "string",
     "required": true,
     "sequence": 0,
     "title": "string",
@@ -2382,7 +2334,7 @@ print r.json()
 [
   {
     "content": {},
-    "project_id": "string",
+    "part_of": "string",
     "required": true,
     "sequence": 0,
     "title": "string",
@@ -2407,68 +2359,28 @@ Status Code **201**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[allOf]|false|none|none|
-|» content|object|true|none|none|
-|» project_id|string|true|none|none|
+|» content|any|true|none|none|
+
+*oneOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|object|false|none|none|
+
+*xor*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|array|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» part_of|string|true|none|none|
 |» required|boolean|false|none|none|
 |» sequence|integer|false|none|none|
 |» title|string|true|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader
-</aside>
-
-## Get row count of query
-
-<a id="opIdget_task_count"></a>
-
-> Code samples
-
-```javascript
-var headers = {
-  'X-API-KEY':'API_KEY'
-
-};
-
-$.ajax({
-  url: 'https://staging.citizenscience.ch/v3/tasks/count',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```python
-import requests
-headers = {
-  'X-API-KEY': 'API_KEY'
-}
-
-r = requests.get('https://staging.citizenscience.ch/v3/tasks/count', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /tasks/count`
-
-<h3 id="get-row-count-of-query-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|search_term|query|string|false|none|
-
-<h3 id="get-row-count-of-query-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Row count|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2587,7 +2499,7 @@ print r.json()
 ```json
 {
   "content": {},
-  "project_id": "string",
+  "part_of": "string",
   "required": true,
   "sequence": 0,
   "title": "string",
@@ -2611,8 +2523,25 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» content|object|true|none|none|
-|» project_id|string|true|none|none|
+|» content|any|true|none|none|
+
+*oneOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|object|false|none|none|
+
+*xor*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|array|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» part_of|string|true|none|none|
 |» required|boolean|false|none|none|
 |» sequence|integer|false|none|none|
 |» title|string|true|none|none|
@@ -2667,14 +2596,7 @@ print r.json()
 > Body parameter
 
 ```json
-{
-  "content": {},
-  "project_id": "string",
-  "required": true,
-  "sequence": 0,
-  "title": "string",
-  "info": {}
-}
+{}
 ```
 
 <h3 id="modify/create-a-task-parameters">Parameters</h3>
@@ -2682,18 +2604,104 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |tid|path|string|true|The unique identifer for the Task|
-|body|body|[#/paths/~1task/post/requestBody](#schema#/paths/~1task/post/requestbody)|false|none|
-|» content|body|object|true|none|
-|» project_id|body|string|true|none|
-|» required|body|boolean|false|none|
-|» sequence|body|integer|false|none|
-|» title|body|string|true|none|
+|body|body|object|false|none|
 
 <h3 id="modify/create-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|New task created|None|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+apiKeyHeader
+</aside>
+
+## Get media for a specific task
+
+<a id="opIdget_task_media"></a>
+
+> Code samples
+
+```javascript
+var headers = {
+  'Accept':'application/json',
+  'X-API-KEY':'API_KEY'
+
+};
+
+$.ajax({
+  url: 'https://staging.citizenscience.ch/v3/tasks/{tid}/media',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://staging.citizenscience.ch/v3/tasks/{tid}/media', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+`GET /tasks/{tid}/media`
+
+<h3 id="get-media-for-a-specific-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|tid|path|string|false|none|
+|limit|query|integer|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "filetype": "string",
+    "name": "string",
+    "path": "string",
+    "source_id": "string",
+    "created_at": "2015-07-07T13:49:51.230000Z",
+    "id": "string",
+    "info": {},
+    "updated_at": "2015-07-07T13:49:51.230000Z"
+  }
+]
+```
+
+<h3 id="get-media-for-a-specific-task-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of media|Inline|
+
+<h3 id="get-media-for-a-specific-task-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[allOf]|false|none|none|
+|» filetype|string|false|none|none|
+|» name|string|true|none|Name of file|
+|» path|string|true|none|Local or remote path|
+|» source_id|string|true|none|The task or project or user it is related to|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2919,11 +2927,6 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[#/paths/~1users~1authorize/post/requestBody](#schema#/paths/~1users~1authorize/post/requestbody)|false|none|
-|» anonymous|body|boolean|false|none|
-|» api_key|body|string|false|none|
-|» email|body|string(email)|false|none|
-|» pwd|body|string|true|none|
-|» username|body|string|false|none|
 
 <h3 id="post-auth-for-token-response-responses">Responses</h3>
 
@@ -3043,11 +3046,6 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[#/paths/~1users~1authorize/post/requestBody](#schema#/paths/~1users~1authorize/post/requestbody)|false|none|
-|» anonymous|body|boolean|false|none|
-|» api_key|body|string|false|none|
-|» email|body|string(email)|false|none|
-|» pwd|body|string|true|none|
-|» username|body|string|false|none|
 
 <h3 id="allow-a-user-to-login-responses">Responses</h3>
 
@@ -3245,14 +3243,7 @@ print r.json()
 > Body parameter
 
 ```json
-{
-  "anonymous": true,
-  "api_key": "string",
-  "email": "user@example.com",
-  "pwd": "string",
-  "username": "string",
-  "info": {}
-}
+{}
 ```
 
 <h3 id="update-user-details-(change-password,-add-details-etc)-parameters">Parameters</h3>
@@ -3261,11 +3252,6 @@ print r.json()
 |---|---|---|---|---|
 |id|path|string|true|The unique identifer for a User|
 |body|body|object|false|none|
-|» anonymous|body|boolean|false|none|
-|» api_key|body|string|false|none|
-|» email|body|string(email)|false|none|
-|» pwd|body|string|false|none|
-|» username|body|string|false|none|
 
 > Example responses
 
@@ -3398,95 +3384,6 @@ To perform this operation, you must be authenticated by means of one of the foll
 apiKeyHeader
 </aside>
 
-## Get all submissions for a user
-
-<a id="opIdget_user_submissions"></a>
-
-> Code samples
-
-```javascript
-var headers = {
-  'Accept':'application/json',
-  'X-API-KEY':'API_KEY'
-
-};
-
-$.ajax({
-  url: 'https://staging.citizenscience.ch/v3/users/me/submissions',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'X-API-KEY': 'API_KEY'
-}
-
-r = requests.get('https://staging.citizenscience.ch/v3/users/me/submissions', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /users/me/submissions`
-
-<h3 id="get-all-submissions-for-a-user-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|uid|path|string|false|none|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "content": {},
-    "task_id": "string",
-    "user_id": "string",
-    "created_at": "2015-07-07T13:49:51.230000Z",
-    "id": "string",
-    "info": {},
-    "updated_at": "2015-07-07T13:49:51.230000Z"
-  }
-]
-```
-
-<h3 id="get-all-submissions-for-a-user-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return submissions|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|User not found|None|
-
-<h3 id="get-all-submissions-for-a-user-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|[allOf]|false|none|none|
-|» content|object|false|none|none|
-|» task_id|string|true|none|none|
-|» user_id|string|true|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-apiKeyHeader
-</aside>
-
 ## Registration end point for a user account
 
 <a id="opIdcreate_user"></a>
@@ -3545,11 +3442,6 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[#/paths/~1users~1authorize/post/requestBody](#schema#/paths/~1users~1authorize/post/requestbody)|false|none|
-|» anonymous|body|boolean|false|none|
-|» api_key|body|string|false|none|
-|» email|body|string(email)|false|none|
-|» pwd|body|string|true|none|
-|» username|body|string|false|none|
 
 <h3 id="registration-end-point-for-a-user-account-responses">Responses</h3>
 
@@ -3669,11 +3561,6 @@ print r.json()
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[#/paths/~1users~1authorize/post/requestBody](#schema#/paths/~1users~1authorize/post/requestbody)|false|none|
-|» anonymous|body|boolean|false|none|
-|» api_key|body|string|false|none|
-|» email|body|string(email)|false|none|
-|» pwd|body|string|true|none|
-|» username|body|string|false|none|
 
 <h3 id="verify-password-reset-token-responses">Responses</h3>
 
